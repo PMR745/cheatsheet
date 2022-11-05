@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=Noto+Sans&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +19,7 @@ nav {
     justify-content: start;
     padding-left: 5px;
     align-items: center;
+    font-family: 'Cormorant', serif;
 }
 
 .brand {
