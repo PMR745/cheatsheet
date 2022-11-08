@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheatSheet</title>
+    <link rel="stylesheet" href="cpp_style.css">
+    <link rel="stylesheet" href="../prism/prism.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../prism/prism.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="brand">
+            PMR
+        </div>
+        <span class="head">
+            C++ CheatSheet
+        </span>
+    </nav>
+    <div class="sidebar active">
+        <div class="logo_content">
+            <div class="logo">
+                <div class="logo_name">CheatSheet</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li><a href=""><i class='bx bxl-c-plus-plus'>
+                </i><span class="links">C++</span></a>
+                <span class="extra">C++</span>
+            </li>
+            <li>
+                <a href=""><i class='bx bxl-python' ></i><span class="links">Python</span></a>
+                <span class="extra">Python</span>
+            </li>
+            <li>
+                <a href=""><i class='bx bx-code'></i><span class="links">HTML</span></a>
+                <span class="extra">HTML</span>
+            </li>
+            <li>
+                <a href=""><i class='bx bxl-css3'></i><span class="links">CSS</span></a>
+                <span class="extra">CSS</span>
+            </li>
+            <li id = "li_c">
+                <a href=""><img src="../img/cp.png" id="c" alt=""><span class="links">C</span></a>
+                <span class="extra">C</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <ol>
+            <li>C++ BoilerPlate</li>
+            <pre class="language-cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+
+    return 0;
+}</code></pre>
+            <li>Taking Array Input from User</li>
+            <pre class="language-cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter Size of Array: ";
+    cin &gt;&gt; n;
+
+    int arr[n];
+    for(int i = 0; i &lt; n; i++)           // Taking Array Input
+    {
+        cout &lt;&lt; "Enter Array Element: ";
+        cin &gt;&gt; arr[i];
+    }
+
+    for(int i = 0; i &lt; n; i++)           // Display Array Elements
+    {
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+    return 0;
+}</code></pre>
+            <li>Bubble Sort</li>
+            <pre class="language-cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void bubbleSort(int arr[], int n) 
+{
+    for (int i = 0; i &lt; n; i++)
+    {
+        for (int j = 0; j &lt; n - i - 1; j++)
+        {
+            if(arr[j]&gt;arr[j+1]) 
+            {
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }        
+    }
+}
+
+void display(int arr[], int n) 
+{
+    for(int i = 0; i &lt; n; i++) 
+    {
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter the Number of Elements in Array: ";
+    cin&gt;&gt; n;
+    int arr[n];
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; "Enter the Array Element: ";
+        cin &gt;&gt; arr[i];
+    }
+    cout &lt;&lt; "Unsorted Array is ";
+    display(arr, n);
+
+    bubbleSort(arr, n);
+
+    cout &lt;&lt; "\nSorted Array is ";
+    display(arr, n);   
+    return 0;
+}</code></pre>
+
+            <li>Insertion Sort</li>
+                <pre class="language-cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void insertionSort(int arr[], int n) 
+{
+    for (int i = 1; i &lt; n; i++)
+    {
+        int current = arr[i];
+        int j = i - 1;
+        while (arr[j]&gt;current && j &gt;= 0)
+        {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = current;        
+    }
+}
+
+void display(int arr[], int n) 
+{
+    for(int i = 0; i &lt; n; i++) 
+    {
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter the Number of Elements in Array: ";
+    cin&gt;&gt; n;
+    int arr[n];
+    for (int i = 0; i &lt; n; i++) 
+    {
+        cout &lt;&lt; "Enter the Array Element: ";
+        cin &gt;&gt; arr[i];
+    }
+    cout &lt;&lt; "Unsorted Array is ";
+    display(arr, n);
+
+    insertionSort(arr, n);
+
+    cout &lt;&lt; "\nSorted Array is ";
+    display(arr, n);   
+    return 0;
+}</code></pre>
+
+            <li>Merge Sort</li>
+            <pre class="language-cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void merge(int arr[], int beg, int mid, int end) 
+{
+    int i, j, k;
+    int n1 = mid - beg + 1;
+    int n2 = end - mid;
+
+    int temp1[n1], temp2[n2]; // Temporary Arrays
+    for (int i = 0; i &lt; n1; i++)
+    {
+        temp1[i] = arr[beg+i];
+    }
+
+    for (int j = 0; j &lt; n2; j++)
+    {
+        temp2[j] = arr[mid + 1 + j];
+    }
+    
+    i = 0, j = 0, k = beg;
+
+    while (i &lt; n1 && j &lt; n2) {
+        if(temp1[i] &lt; temp2[j]) {
+            arr[k++] = temp1[i++];
+        }
+        else {
+            arr[k++] = temp2[j++];
+        }
+    }
+    
+    while (i &lt; n1) {
+        arr[k++] = temp1[i++];
+    }
+    
+    while (j &lt; n2)
+    {
+        arr[k++] = temp2[j++];
+    }
+    
+}
+
+void mergeSort(int arr[], int beg, int end) 
+{
+    if(beg&lt;end) {
+        int mid = (beg+end)/2;
+        mergeSort(arr, beg, mid);
+        mergeSort(arr, mid+1, end);
+        merge(arr, beg, mid, end);
+    }
+}
+
+void display(int arr[], int n) 
+{
+    for (int i = 0; i &lt; n; i++)
+    {
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter the Number of Array Elements: ";
+    cin &gt;&gt; n;
+    int arr[n];
+    for (int i = 0; i &lt; n; i++)
+    {
+        cout &lt;&lt; "Enter Array Element: ";
+        cin &gt;&gt; arr[i];
+    }
+
+    cout &lt;&lt; "\nUnsorted Array: ";
+    display(arr, n);
+    
+    mergeSort(arr, 0, n-1);
+    
+    cout &lt;&lt; "\nSorted Array: ";
+    display(arr, n);
+    
+}</code></pre>
+
+            <li>Quick Sort</li>
+            <pre class="language-cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void swap(int arr[], int i, int j)
+{
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
+
+int partition(int arr[], int low, int high)
+{
+    int pivot = arr[high];
+    int i = low - 1;
+
+    for (int j = low; j &lt; high; j++)
+    {
+        if (arr[j] &lt; pivot)
+        {
+            i++;
+            swap(arr, i, j);
+        }
+    }
+    swap(arr, i + 1, high);
+    return i + 1;
+}
+
+void quickSort(int arr[], int low, int high)
+{
+    if (low &lt; high)
+    {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+void display(int arr[], int n) 
+{
+    for (int i = 0; i &lt; n; i++)
+    {
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+    
+}
+
+int main()
+{
+    int n;
+    cout &lt;&lt; "Enter the size of Array: ";
+    cin &gt;&gt; n;
+    int arr[n];
+
+    for (int i = 0; i &lt; n; i++)
+    {
+        cout &lt;&lt; "Enter the Array Elements: ";
+        cin &gt;&gt; arr[i];
+    }
+
+    printf("\nUnsorted Array: ");
+    display(arr, n);
+    
+    quickSort(arr, 0, n);
+
+    printf("\nSorted Array: ");
+    display(arr, n);
+}</code></pre>
+
+        </ol>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
